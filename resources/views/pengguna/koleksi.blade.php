@@ -3,18 +3,13 @@
 
     <div class="mb-8">
         <div class="flex justify-between items-center">
-            <div class="font-bold text-lg mb-2">Koleksi Pribadi</div>
             <div>
                 <button data-modal-target="ModalTambah" data-modal-toggle="ModalTambah" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Tambah Koleksi</button>
             </div>
         </div>
-        <div class="flex space-x-0 ">
-            <hr class="border-2 border-blue-600 cursor-pointer w-[105px]">
-            <hr class="border-1 border-gray-300 cursor-pointer w-full">
-        </div>
     </div>
 
-        <div class="grid grid-cols-6 gap-5">
+        {{-- <div class="grid grid-cols-6 gap-5">
             @foreach ($koleksi as $index => $koleksiBuku)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                     <a href="{{ route('buku.show', $koleksiBuku->buku->id) }}">
@@ -24,6 +19,7 @@
                         <h5 class="mb-2 text-sm font-semibold tracking-tight text-gray-500">{{ $koleksiBuku->buku->penulis }}</h5>
                             <div class="flex justify-between items-center">
                                 <p class="mb-2 text-sm font-semibold ">{{ $koleksiBuku->buku->judul }}</p>
+                            
                             <div>
                                 <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="opsiKoleksi{{ $koleksiBuku }}" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
@@ -46,8 +42,47 @@
                     </div>
                 </div>
             @endforeach
+        </div> --}}
+        <div class="grid grid-cols-4 gap-1">
+            @foreach ($koleksi as $index => $koleksiBuku)
+                <div class=" bg-white border shadow ">
+                    <div class="flex ml-2 mt-2 mb-2">
+                        <div class="">
+                            <a href="{{ route('buku.show', $koleksiBuku->buku->id) }}" class="bg-white block">
+                                <img class="w-auto h-[120px]" src="{{ asset($koleksiBuku->buku->foto) }}" alt="{{ $koleksiBuku->buku->foto }}" />
+                            </a>              
+                        </div>
+                        <div class="ml-2">
+                            <div class="mb-1">
+                                <p class="text-base font-semibold">{{ $koleksiBuku->buku->judul }}</p>                   
+                            </div>
+                            @foreach ($koleksiBuku->buku->kategoriBukuRelasi as $kategoriBuku)
+                                <span class="px-2 py-1 mb-1 text-xs font-medium text-center text-white bg-teal-400 rounded-lg hover:bg-teal-500">{{ $kategoriBuku->kategori->nama_kategori }}</span>
+                            @endforeach
+                            <h5 class="mt-1 text-sm font-semibold tracking-tight text-gray-600">{{ $koleksiBuku->buku->penulis }}</h5>
+                            <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="opsiKoleksi{{ $koleksiBuku }}" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div>
+                            <div id="opsiKoleksi{{ $koleksiBuku }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-xl w-44">
+                                <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
+                                    <li>
+                                        <form action="{{ route('koleksi.destroy', $koleksiBuku->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="block px-4 py-2 w-full text-left hover:bg-gray-100">Hapus</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-
 @endsection
 
 <!-- Modal Tambah -->

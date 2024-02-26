@@ -39,6 +39,7 @@ class BukuController extends Controller
         Buku::create([
             'judul' => $request->judul,
             'foto' => $path.$filename,
+            // 'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
@@ -76,6 +77,7 @@ class BukuController extends Controller
             $buku->update([
                 'judul' => $request->judul,
                 'foto' => $path.$filename,
+                
                 'penulis' => $request->penulis,
                 'penerbit' => $request->penerbit,
                 'tahun_terbit' => $request->tahun_terbit,
@@ -84,6 +86,7 @@ class BukuController extends Controller
         } else {
             $buku->update([
                 'judul' => $request->judul,
+                
                 'penulis' => $request->penulis,
                 'penerbit' => $request->penerbit,
                 'tahun_terbit' => $request->tahun_terbit,
