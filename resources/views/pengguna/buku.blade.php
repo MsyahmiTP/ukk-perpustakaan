@@ -4,10 +4,10 @@
 <div class="container flex  mx-auto">   
     <div class="w-[100%]">
         <div class="flex">
-            <div class="col-md-4 p-3">
+            <div class="col-md-4">
                 <div class="sticky top-3">
-                    <div class="">
-                        <img class=" w-[300px] h-[320px] rounded-lg shadow" src="{{ asset($buku->foto) }}" alt="">
+                    <div class="w-[220px] ">
+                        <img class=" rounded-lg shadow" src="{{ asset($buku->foto) }}" alt="">
                     </div>
                     {{-- <div class="book-carousel" data-flickity=''>
                         <div class="items-left carousel-cell">
@@ -16,16 +16,16 @@
                         <div class="items-left carousel-cell">
                         </div>
                         <div class="items-left carousel-cell">
-
+    
                         </div>
                     </div> --}}
                 </div>
             </div>
             <div class="ml-5 mt-4 text-sm">
-                <div class="text-gray-500 font-semibold mb-2">
+                <div class="texl-2xl text-gray-500 font-semibold">
                     {{ $buku->penulis }}
                 </div>
-                <div class="text-3xl font-bold">
+                <div class="text-2xl font-bold">
                     {{ $buku->judul }}
                 </div>
                 <div class="mb-2">
@@ -37,9 +37,8 @@
                 <div class=" font-semibold mt-6">
                     Deskripsi Buku
                 </div>
-                <div class="mb-7">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt repellat inventore est vel, laboriosam hic optio officiis tenetur dolorum ducimus eligendi qui porro delectus ea architecto atque maiores deleniti nulla!
-                    {{-- {{ $buku->deskripsi }} --}}
+                <div class="mb-7">                    
+                    {{ $buku->deskripsi  }}
                 </div>
                 <div class="text-sm flex gap-5">
                     <div>

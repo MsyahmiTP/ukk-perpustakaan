@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class BukuController extends Controller
@@ -15,11 +16,26 @@ class BukuController extends Controller
         return view('admin.buku', compact('buku'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $result = Buku::where('judul', 'like', "%$query%")
+            ->orWhereHas('kategoriBukuRelasi.kategori', function ($kategoriQuery) use ($query) {
+                $kategoriQuery->where('nama_kategori', 'like', "%$query%");
+            })
+            ->orWhere('penulis', 'like', "%$query%")
+            ->get();
+
+        return view('pengguna.beranda', ['buku' => $result, 'query' => $query]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'judul' => 'required',
             'foto' => 'image|nullable|mimes:png,jpg,gif|max:2048',
+            'deskripsi' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
             'tahun_terbit' => 'required',
@@ -39,7 +55,7 @@ class BukuController extends Controller
         Buku::create([
             'judul' => $request->judul,
             'foto' => $path.$filename,
-            // 'deskripsi' => $request->deskripsi,
+            'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
@@ -55,6 +71,7 @@ class BukuController extends Controller
         $request->validate([
             'judul' => 'required',
             'foto' => 'image|nullable|mimes:png,jpg,gif|max:2048',
+            'deskripsi' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
             'tahun_terbit' => 'required',
@@ -77,7 +94,7 @@ class BukuController extends Controller
             $buku->update([
                 'judul' => $request->judul,
                 'foto' => $path.$filename,
-                
+                'deskripsi' => $request->deskripsi,
                 'penulis' => $request->penulis,
                 'penerbit' => $request->penerbit,
                 'tahun_terbit' => $request->tahun_terbit,
@@ -86,7 +103,7 @@ class BukuController extends Controller
         } else {
             $buku->update([
                 'judul' => $request->judul,
-                
+                'deskripsi' => $request->deskripsi,
                 'penulis' => $request->penulis,
                 'penerbit' => $request->penerbit,
                 'tahun_terbit' => $request->tahun_terbit,

@@ -26,6 +26,7 @@ use App\Http\Controllers\UlasanController;
 */
 
 Route::get('/', [PenggunaController::class, 'index'])->name('beranda');
+Route::get('/search', [BukuController::class, 'search'])->name('bukus.search');
 Route::get('/buku/{id}', [UlasanController::class, 'index'])->name('buku.show');
 
 Route::middleware(['auth'])->group(function () {
@@ -47,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         //Kategori Buku
         Route::get('/dashboard/kategori-buku', [KategoriBukuController::class, 'index'])->name('kategori-buku.index');
         Route::post('/dashboard/kategori-buku', [KategoriBukuController::class, 'store'])->name('kategori-buku.store');
-        Route::put('/dashboard/kategori-buku/{id}', [KategoriBukuController::class, 'edit'])->name('kategori-buku.edit');
+        Route::put('/dashboard/kategori-buku/{id}', [KategoriBukuController::class, 'update'])->name('kategori-buku.update');
         Route::delete('/dashboard/kategori-buku/{id}', [KategoriBukuController::class, 'destroy'])->name('kategori-buku.destroy');
 
         // Peminjaman
@@ -72,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
         // Ulasan
         Route::post('/tampilan/{id}/ulasan', [TampilanController::class, 'store'])->name('tampilan.store');
         Route::delete('/tampilan/{id}/ulasan', [TampilanController::class, 'destroy'])->name('tampilan.destroy');
+
+
         // Koleksi
         Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
         Route::post('/koleksi', [KoleksiController::class, 'store'])->name('koleksi.store');

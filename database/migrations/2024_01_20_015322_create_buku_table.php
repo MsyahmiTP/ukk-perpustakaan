@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('foto')->nullable();
             $table->string('penulis');
+            $table->text('deskripsi');
             $table->string('penerbit');
             $table->integer('tahun_terbit');
             $table->integer('stok');
