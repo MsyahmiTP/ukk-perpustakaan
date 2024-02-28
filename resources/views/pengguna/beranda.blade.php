@@ -30,6 +30,10 @@
                             <span class="px-2 py-1 mb-1 text-xs font-medium text-center text-white bg-teal-400 rounded-lg hover:bg-teal-500">{{ $kategoriBuku->kategori->nama_kategori }}</span>
                         @endforeach
                         <h5 class="text-sm font-semibold tracking-tight text-gray-600">{{ $buku->penulis }}</h5>
+                        <div class="text-sm font-bold flex gap-2 items-center">
+                            {{ number_format($buku->ulasan->avg('rating'), 1) }}
+                            <input type="radio" disabled class="mask mask-star-2 bg-yellow-300" />
+                        </div>
                     </div>
                 </div>
             </div>
