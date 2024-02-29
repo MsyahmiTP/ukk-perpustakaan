@@ -49,7 +49,7 @@
                                         {{ $kategoribuku->kategori->nama_kategori }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <form action="{{ route('kategori-buku.destroy', $kategoribuku->id) }}" class="mt-4" method="POST">
+                                        <form id="deleteForm{{$kategoribuku->id}}" action="{{ route('kategori-buku.destroy', $kategoribuku->id) }}" class="mt-4" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button action="{{ route('kategori-buku.update', $kategoribuku->id) }}" data-modal-target="ModalEdit{{$kategoribuku->id}}" data-modal-toggle="ModalEdit{{$kategoribuku->id}}" type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 ">Edit</button>

@@ -78,10 +78,10 @@
                                             <button data-modal-target="ModalEdit" data-modal-toggle="ModalEdit" type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5">Edit</a>
                                         </form>
                                         @else
-                                        <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST">
+                                        <form id="deleteForm{{$peminjaman->id}}" action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button data-modal-target="ModalHapus" data-modal-toggle="ModalHapus" type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Hapus</a>
+                                            <button type="button" onclick="confirmAction('delete', 'deleteForm{{$peminjaman->id}}')" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Hapus</button>
                                         </form>
                                         @endIF
                                     </td>
@@ -94,4 +94,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+    function confirmAction(actionType, formId) {
+        var confirmation = false;
+
+        if (actionType === 'delete') {
+            confirmation = confirm('Ada Yakin Ingin Menghapus?');
+        } else if (actionType === 'edit') {
+            // Add custom confirmation logic for edit if needed
+            confirmation = true; // Set to true for now
+        }
+
+        if (confirmation) {
+            document.getElementById(formId).submit();
+        }
+    }
+</script>
+
 </x-app-layout>

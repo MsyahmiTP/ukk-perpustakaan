@@ -3,47 +3,13 @@
 
     <div class="mb-8">
         <div class="flex justify-between items-center">
-        <div class="font-bold text-lg">Rekomendasi Buku</div>
+        <div class="font-bold text-lg">Koleksi Pribadi</div>
             <div>
                 <button data-modal-target="ModalTambah" data-modal-toggle="ModalTambah" type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Tambah Koleksi</button>
             </div>
         </div>
     </div>
 
-        {{-- <div class="grid grid-cols-6 gap-5">
-            @foreach ($koleksi as $index => $koleksiBuku)
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-                    <a href="{{ route('buku.show', $koleksiBuku->buku->id) }}">
-                        <img class="rounded-t-lg w-full h-[290px]" src="{{ $koleksiBuku->buku->foto }}" alt=""/>
-                    </a>
-                    <div class="p-3">                          
-                        <h5 class="mb-2 text-sm font-semibold tracking-tight text-gray-500">{{ $koleksiBuku->buku->penulis }}</h5>
-                            <div class="flex justify-between items-center">
-                                <p class="mb-2 text-sm font-semibold ">{{ $koleksiBuku->buku->judul }}</p>
-                            
-                            <div>
-                                <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="opsiKoleksi{{ $koleksiBuku }}" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-50 rounded-full hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                                    </svg>
-                                </button>
-                                <div id="opsiKoleksi{{ $koleksiBuku }}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-xl w-44">
-                                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                        <li>
-                                            <form action="{{ route('koleksi.destroy', $koleksiBuku->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="block px-4 py-2 w-full text-left hover:bg-gray-100">Hapus</button>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div> --}}
         <div class="grid grid-cols-4 gap-1">
             @foreach ($koleksi as $index => $koleksiBuku)
                 <div class=" bg-white border shadow ">
@@ -74,7 +40,7 @@
                                         <form action="{{ route('koleksi.destroy', $koleksiBuku->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="block px-4 py-2 w-full text-left hover:bg-gray-100">Hapus</button>
+                                            <button type="submit" class="block px-2 py-2 w-full text-left hover:bg-gray-200">Hapus</button>
                                         </form>
                                     </li>
                                 </ul>

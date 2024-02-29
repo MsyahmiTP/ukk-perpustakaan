@@ -91,7 +91,7 @@
             <div class="mt-10">
                 <div style="float: left;">
                     <p class="mb-2"><span class="font-semibold">Dilaporkan Oleh :</span> <span class="underline underline-offset-[6px]">{{ Auth::user()->nama_lengkap }}</span></p>
-                    <p><span class="font-semibold">Jenis Laporan :</span> <span class="underline underline-offset-[6px]">Laporan Pendataan Buku</span></p>
+                    {{-- <p><span class="font-semibold">Jenis Laporan :</span> <span class="underline underline-offset-[6px]">Laporan Pendataan Buku</span></p> --}}
                 </div>
                 <div style="float: right;">
                     <p><span class="font-semibold">Tanggal Laporan :</span> <span class="underline underline-offset-[6px]">{{ now()->format('d-m-Y') }}</span></p>

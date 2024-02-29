@@ -23,7 +23,7 @@
         }
         </style>
     </head>
-    <body class="font-sans text-gray-900 bg-gray-50 antialiased">
+    <body class=" font-sans text-gray-900 bg-gray-50 antialiased">
 
             <!-- Navbar -->
             <div class="bg-white shadow p-6 mb-6">
@@ -67,9 +67,9 @@
                                     </x-slot>
 
                                     <x-slot name="content">
-                                        <x-dropdown-link :href="route('profile.edit')">
+                                        {{-- <x-dropdown-link :href="route('profile.edit')">
                                             {{ __('Profile') }}
-                                        </x-dropdown-link>
+                                        </x-dropdown-link> --}}
 
                                         <!-- Authentication -->
                                         <form method="POST" action="{{ route('logout') }}">
@@ -94,9 +94,23 @@
                 </div>
             </div>
 
-        <div class="ml-3 mr-3 p-6">
-            @yield('content')
-        </div>
+            <div class="min-h-screen flex flex-col">
+                <div class="flex-grow ml-3 mr-3 p-6">
+                    @yield('content')
+                </div>
+            
+                <!-- Footer -->
+                <footer class="w-full bg-white rounded-lg shadow dark:bg-gray-900">
+                    <div class="w-full text-center max-w-screen-xl mx-auto p-4 md:py-8">
+                        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">©2024 Dibuat Oleh E-Library</span>
+                    </div>
+                </footer>
+            </div>
+            
+        
+            
+        
+
         <style>
         * { box-sizing: border-box; }
 
@@ -116,5 +130,9 @@
               content: counter(gallery-cell);
               color: white;
             }</style>
+
+
+
     </body>
+    
 </html>

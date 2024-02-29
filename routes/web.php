@@ -6,13 +6,13 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
-use App\Http\Controllers\DataBukuController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\TampilanController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +24,8 @@ use App\Http\Controllers\UlasanController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [PenggunaController::class, 'index'])->name('beranda');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/beranda', [PenggunaController::class, 'index'])->name('beranda');
 Route::get('/search', [BukuController::class, 'search'])->name('bukus.search');
 Route::get('/buku/{id}', [UlasanController::class, 'index'])->name('buku.show');
 
@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         // Ulasan
         Route::post('/tampilan/{id}/ulasan', [TampilanController::class, 'store'])->name('tampilan.store');
         Route::delete('/tampilan/{id}/ulasan', [TampilanController::class, 'destroy'])->name('tampilan.destroy');
-
+        
 
         // Koleksi
         Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
@@ -82,10 +82,10 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';

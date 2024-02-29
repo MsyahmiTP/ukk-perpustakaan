@@ -35,7 +35,9 @@ class PeminjamanController extends Controller
         $buku->save();
 
         return redirect()->back();
+        
     }
+    
 
     public function update($id)
     {
